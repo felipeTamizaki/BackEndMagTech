@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="T_MAGTECH_POST")
-@SequenceGenerator(name="post", sequenceName="SQ_TB_POST", allocationSize=1)
+@SequenceGenerator(name="post", sequenceName="SQ_T_POST", allocationSize=1)
 public class Post {
 	@Id
 	@Column(name="cd_post", precision=9)
