@@ -1,6 +1,6 @@
 package br.com.magtech.entity;
 
-import java.sql.Timestamp;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.com.magtech.entity.emum.Genero;
 
@@ -20,42 +22,42 @@ import br.com.magtech.entity.emum.Genero;
 public class Usuario {
 
 	@Id
-	@Column(name = "cd_usuario", length = 6)
+	@Column(name = "cd_usuario", nullable = false, precision = 6)
 	@GeneratedValue(generator = "usuario", strategy = GenerationType.SEQUENCE)
 	private int codigo;
-	
+
 	@Column(name = "nm_usuario", length = 120, nullable = false)
 	private String nome;
-	
+
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_nascimento", nullable = false)
-	private Timestamp dtNacimento;
-	
+	private Calendar dtNascimento;
+
 	@Column(name = "fl_foto", length = 200, nullable = false)
 	private String foto;
-	
+
 	@Column(name = "ds_estado", length = 2, nullable = false)
 	private String estado;
-	
-	@Column(name = "nr_telefone", length = 11, nullable = false)
+
+	@Column(name = "nr_telefone", precision = 11, nullable = false)
 	private long telefone;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "ds_genero", length = 16, nullable = false)
 	private Genero genero;
-	
-	@Column(name = "ds_bio", length = 100 ,nullable = true)
+
+	@Column(name = "ds_bio", length = 100, nullable = true)
 	private String bio;
-	
+
 	public Usuario() {
 		super();
 	}
 
-	public Usuario(int codigo, String nome, Timestamp dtNacimento, String foto, String estado, long telefone,
+	public Usuario(String nome, Calendar dtNascimento, String foto, String estado, long telefone,
 			Genero genero, String bio) {
 		super();
-		this.codigo = codigo;
 		this.nome = nome;
-		this.dtNacimento = dtNacimento;
+		this.dtNascimento = dtNascimento;
 		this.foto = foto;
 		this.estado = estado;
 		this.telefone = telefone;
@@ -79,12 +81,12 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public Timestamp getDtNacimento() {
-		return dtNacimento;
+	public Calendar getDtNascimento() {
+		return dtNascimento;
 	}
 
-	public void setDtNacimento(Timestamp dtNacimento) {
-		this.dtNacimento = dtNacimento;
+	public void setDtNacimento(Calendar dtNascimento) {
+		this.dtNascimento = dtNascimento;
 	}
 
 	public String getFoto() {

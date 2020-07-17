@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Table(name = "T_MAGTECH_PROFISSIONAL_SAUDE")
 public class ProfissionalSaude {
 
-	@Column(name = "ds_identificacao_prof", length = 12, nullable = false)
+	@Column(name = "ds_identificacao_prof", length = 12, nullable = false, unique = true)
 	private String identificação;
 	
 	@Column(name = "ds_cargo", length = 100, nullable = false)
@@ -17,7 +17,7 @@ public class ProfissionalSaude {
 	@Column(name = "nm_instituicao_saude", length = 50, nullable = false)
 	private String nomeInstituição;
 	
-	@Column(name = "nr_telefone_instituicao", length = 11, nullable = true)
+	@Column(name = "nr_telefone_instituicao", precision = 11, nullable = true)
 	private long telefone;
 
 	public ProfissionalSaude(String identificação, String cargo, String nomeInstituição, long telefone) {

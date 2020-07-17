@@ -10,18 +10,18 @@ public class UsuarioComum {
 	
 	@Column(name = "ds_tipo_sanguineo", nullable = false, length = 3)
 	private String tpSangue;
-	@Column(name = "st_fumante", nullable = false, length = 1)
+	@Column(name = "st_fumante", nullable = false)
 	private boolean fumante;
-	@Column(name = "st_abstemia", nullable = false, length = 1)
+	@Column(name = "st_abstemia", nullable = false)
 	private boolean abstemia;
-	@Column(name = "st_doador", nullable = false, length = 1)
+	@Column(name = "st_doador", nullable = false)
 	private boolean doador;
 	
 	@Column(name = "fl_exames", length = 200)
 	private String exames;
 	@Column(name = "fl_historico_consulta", length = 200)
 	private String historico;
-	@Column(name = "st_categoria", length = 1)
+	@Column(name = "st_categoria", precision = 1)
 	private int categoria;
 	@Column(name = "ds_alergia", length = 70)
 	private String alergia;

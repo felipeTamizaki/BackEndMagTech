@@ -1,6 +1,6 @@
 package br.com.magtech.entity;
 
-import java.sql.Timestamp;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "T_MAGTECH_MENSAGEM")
@@ -16,12 +18,13 @@ import javax.persistence.Table;
 public class Mensagem {
 
 	@Id
-	@Column(name = "cd_mensagem", nullable = false)
+	@Column(name = "cd_mensagem", nullable = false, precision = 9)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mensagem")
 	private int codigo;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_postagem", nullable = false)
-	private Timestamp dtPostagem;
+	private Calendar dtPostagem;
 	
 	@Column(name = "ds_conteudo", length = 400)
 	private String conteudo;
@@ -31,9 +34,8 @@ public class Mensagem {
 	
 	// Foreign Key
 
-	public Mensagem(int codigo, Timestamp dtPostagem, String conteudo, String imagem) {
+	public Mensagem(Calendar dtPostagem, String conteudo, String imagem) {
 		super();
-		this.codigo = codigo;
 		this.dtPostagem = dtPostagem;
 		this.conteudo = conteudo;
 		this.imagem = imagem;
@@ -51,11 +53,11 @@ public class Mensagem {
 		this.codigo = codigo;
 	}
 
-	public Timestamp getDtPostagem() {
+	public Calendar getDtPostagem() {
 		return dtPostagem;
 	}
 
-	public void setDtPostagem(Timestamp dtPostagem) {
+	public void setDtPostagem(Calendar dtPostagem) {
 		this.dtPostagem = dtPostagem;
 	}
 

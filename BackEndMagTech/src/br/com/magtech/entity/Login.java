@@ -14,22 +14,21 @@ import javax.persistence.Table;
 public class Login {
 	
 	@Id
-	@Column(name = "cd_login", nullable = false, length = 6)
+	@Column(name = "cd_login", nullable = false, precision = 6)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "login")
 	private int codigo;
 	
-	@Column(name = "ds_email", nullable = false, length = 50)
+	@Column(name = "ds_email", nullable = false, length = 50, unique = true)
 	private String email;
 	
 	@Column(name = "ds_senha", nullable = false, length = 25)
 	private String senha;
 	
-	@Column(name = "DS_REGISTRO", length = 12)
+	@Column(name = "DS_REGISTRO", length = 12, unique = true)
 	private String registro;
 	
-	public Login(int codigo, String email, String senha, String registro) {
+	public Login(String email, String senha, String registro) {
 		super();
-		this.codigo = codigo;
 		this.email = email;
 		this.senha = senha;
 		this.registro = registro;
