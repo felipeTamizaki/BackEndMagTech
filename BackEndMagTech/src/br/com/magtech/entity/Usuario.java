@@ -1,6 +1,7 @@
 package br.com.magtech.entity;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -48,7 +50,15 @@ public class Usuario {
 
 	@Column(name = "ds_bio", length = 100, nullable = true)
 	private String bio;
-
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Mensagem> mensagens;
+	
+	public void addMensagem(Mensagem novaMensagem) {
+		novaMensagem.setUsuario(this);
+		this.mensagens.add(novaMensagem);
+	}
+	
 	public Usuario() {
 		super();
 	}
@@ -85,7 +95,7 @@ public class Usuario {
 		return dtNascimento;
 	}
 
-	public void setDtNacimento(Calendar dtNascimento) {
+	public void setDtNascimento(Calendar dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 
@@ -128,4 +138,13 @@ public class Usuario {
 	public void setBio(String bio) {
 		this.bio = bio;
 	}
+
+	public List<Mensagem> getMensagens() {
+		return mensagens;
+	}
+
+	public void setMensagens(List<Mensagem> mensagens) {
+		this.mensagens = mensagens;
+	}
+	
 }
