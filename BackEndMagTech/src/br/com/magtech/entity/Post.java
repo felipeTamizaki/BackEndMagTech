@@ -1,12 +1,14 @@
 package br.com.magtech.entity;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,9 +42,13 @@ public class Post {
 	@Column(name="fl_imagem", length=200)
 	private String imagem;
 	
-	/* 
-	 * Relacionamentos
-	*/
+	@OneToMany(mappedBy="post")
+	public List<Comentario> comentarios;
+	
+	public void addComentario(Comentario novoComentario) {
+		novoComentario.setPost(this);
+		this.comentarios.add(novoComentario);
+	}
 	
 	public Post() {
 		super();
@@ -112,6 +118,14 @@ public class Post {
 
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
+	}
+
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
 	}
 	
 }
