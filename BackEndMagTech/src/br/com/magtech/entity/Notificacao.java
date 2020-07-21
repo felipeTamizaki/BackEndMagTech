@@ -1,10 +1,13 @@
 package br.com.magtech.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,9 +26,8 @@ public class Notificacao {
 	@Column(name="fl_icone", nullable=false, length=200)
 	private String icone;
 
-	/*
-	 * Relacionamentos
-	 * */
+	@OneToMany(mappedBy = "notificacao")
+	private List<UsuarioNotificacao> notificacoes;
 	
 	public Notificacao() {
 		super();

@@ -38,5 +38,21 @@ public class PreferenciasPK implements Serializable {
 			return false;
 		return true;
 	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public int getConfigGeral() {
+		return configGeral;
+	}
+
+	public void setConfigGeral(int configGeral) {
+		this.configGeral = configGeral;
+	}
 	
 }

@@ -51,8 +51,12 @@ public class Usuario {
 	@Column(name = "ds_bio", length = 100, nullable = true)
 	private String bio;
 	
+	
 	@OneToMany(mappedBy = "usuario")
 	private List<Mensagem> mensagens;
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<UsuarioNotificacao> notificacoes;
 	
 	public void addMensagem(Mensagem novaMensagem) {
 		novaMensagem.setUsuario(this);
