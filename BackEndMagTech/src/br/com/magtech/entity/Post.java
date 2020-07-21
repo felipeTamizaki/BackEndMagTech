@@ -2,11 +2,14 @@ package br.com.magtech.entity;
 
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -39,10 +42,12 @@ public class Post {
 	
 	@Column(name="fl_imagem", length=200)
 	private String imagem;
+	 
+	// Relacionamentos
 	
-	/* 
-	 * Relacionamentos
-	*/
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "cd_usuario")
+	private Usuario usuario;
 	
 	public Post() {
 		super();
@@ -112,6 +117,14 @@ public class Post {
 
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 }

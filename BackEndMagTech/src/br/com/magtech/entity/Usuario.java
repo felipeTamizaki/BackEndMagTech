@@ -1,6 +1,8 @@
 package br.com.magtech.entity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -54,6 +57,9 @@ public class Usuario {
 	
 	@OneToOne(mappedBy = "usuario")
 	private Login login;
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Post> posts = new ArrayList<Post>();
 	
 	public Usuario() {
 		super();
@@ -133,5 +139,27 @@ public class Usuario {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+	
+	public void setLogin(Login login) {
+		this.login = login;
+	}
+	
+	public List<Post> getPosts() {
+		return posts;
+	}
+	
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	// Metodo para adicionar um post à lista do usuário
+	public void addPost(Post post) {
+		post.setUsuario(this);
+		posts.add(post);
 	}
 }
