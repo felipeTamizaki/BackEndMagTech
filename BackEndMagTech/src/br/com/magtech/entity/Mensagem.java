@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -33,6 +34,9 @@ public class Mensagem {
 	private String imagem;
 	
 	// Foreign Key
+	
+	@OneToOne(mappedBy = "mensagem")
+	private ConfiguracaoGeral config;
 
 	public Mensagem(Calendar dtPostagem, String conteudo, String imagem) {
 		super();
