@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,6 +20,7 @@ import javax.persistence.TemporalType;
 @Table(name="T_MAGTECH_POST")
 @SequenceGenerator(name="post", sequenceName="SQ_T_POST", allocationSize=1)
 public class Post {
+	
 	@Id
 	@Column(name="cd_post", precision=9)
 	@GeneratedValue(generator="post", strategy=GenerationType.SEQUENCE)
@@ -48,6 +50,9 @@ public class Post {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "cd_usuario")
 	private Usuario usuario;
+	
+	@OneToOne(mappedBy = "post")
+	private ConfiguracaoGeral configGeral;
 	
 	public Post() {
 		super();

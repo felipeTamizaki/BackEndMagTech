@@ -22,9 +22,12 @@ public class ConfiguracaoGeral {
 	@Column(name="st_verificacao_duas_etapas", precision=1)
 	private int verificacaoDuasEtapas;
 
-	/*
-	 * Relacionamentos 
-	 */
+	
+	// Relacionamentos 
+	 
+	@OneToOne
+	@JoinColumn(name = "cd_post")
+	private Post post;
 	
 	@OneToOne
 	@JoinColumn(name = "cd_mensagem")
