@@ -60,6 +60,9 @@ public class Usuario {
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private ProfissionalSaude profSaude;
 	
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private UsuarioComum usuarioComum;  
+	
 	@OneToOne(mappedBy = "usuario")
 	private Login login;
 	
@@ -102,7 +105,7 @@ public class Usuario {
 		return dtNascimento;
 	}
 
-	public void setDtNacimento(Calendar dtNascimento) {
+	public void setDtNascimento(Calendar dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 
@@ -160,6 +163,14 @@ public class Usuario {
 	
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+	
+	public ProfissionalSaude getProfSaude() {
+		return profSaude;
+	}
+
+	public void setProfSaude(ProfissionalSaude profSaude) {
+		this.profSaude = profSaude;
 	}
 
 	// Metodo para adicionar um post à lista do usuário
