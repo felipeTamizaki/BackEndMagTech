@@ -131,5 +131,13 @@ public class Post {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public ConfiguracaoGeral getConfigGeral() {
+		return configGeral;
+	}
+
+	public void setConfigGeral(ConfiguracaoGeral configGeral) {
+		this.configGeral = configGeral;
+	}
 	
 }

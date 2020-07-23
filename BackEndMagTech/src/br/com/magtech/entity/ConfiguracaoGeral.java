@@ -67,6 +67,21 @@ public class ConfiguracaoGeral {
 	public void setVerificacaoDuasEtapas(int verificacaoDuasEtapas) {
 		this.verificacaoDuasEtapas = verificacaoDuasEtapas;
 	}
-	
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
+	public Mensagem getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(Mensagem mensagem) {
+		this.mensagem = mensagem;
+	}
 	 
 }

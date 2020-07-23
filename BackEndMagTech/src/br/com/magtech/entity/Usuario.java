@@ -172,6 +172,14 @@ public class Usuario {
 	public void setProfSaude(ProfissionalSaude profSaude) {
 		this.profSaude = profSaude;
 	}
+	
+	public UsuarioComum getUsuarioComum() {
+		return usuarioComum;
+	}
+
+	public void setUsuarioComum(UsuarioComum usuarioComum) {
+		this.usuarioComum = usuarioComum;
+	}
 
 	// Metodo para adicionar um post à lista do usuário
 	public void addPost(Post post) {

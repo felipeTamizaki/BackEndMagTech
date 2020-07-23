@@ -134,4 +134,12 @@ public class UsuarioComum {
 	public void setRemedioCtrl(String remedioCtrl) {
 		this.remedioCtrl = remedioCtrl;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 }
