@@ -63,10 +63,13 @@ public class Usuario {
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private UsuarioComum usuarioComum;  
 	
-	@OneToOne(mappedBy = "usuario")
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private Login login;
 	
-	@OneToMany(mappedBy = "usuario")
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private ConfiguracaoGeral configGeral;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Post> posts = new ArrayList<Post>();
 	
 	public Usuario() {
@@ -179,6 +182,14 @@ public class Usuario {
 
 	public void setUsuarioComum(UsuarioComum usuarioComum) {
 		this.usuarioComum = usuarioComum;
+	}
+
+	public ConfiguracaoGeral getConfigGeral() {
+		return configGeral;
+	}
+
+	public void setConfigGeral(ConfiguracaoGeral configGeral) {
+		this.configGeral = configGeral;
 	}
 
 	// Metodo para adicionar um post à lista do usuário

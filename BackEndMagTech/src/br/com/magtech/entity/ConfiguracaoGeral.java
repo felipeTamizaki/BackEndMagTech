@@ -2,6 +2,7 @@ package br.com.magtech.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @Table(name="T_MAGTECH_CONFIGURACAO_GERAL")
 @SequenceGenerator(name="config", sequenceName="SQ_T_CONFIGURACAO_GERAL", allocationSize=1)
 public class ConfiguracaoGeral {
+	
 	@Id
 	@Column(name="cd_configuracao", precision=2)
 	private int codigo;
@@ -22,14 +24,17 @@ public class ConfiguracaoGeral {
 	@Column(name="st_verificacao_duas_etapas", precision=1)
 	private int verificacaoDuasEtapas;
 
-	
 	// Relacionamentos 
 	 
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cd_usuario")
+	private Usuario usuario;
+	
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cd_post")
 	private Post post;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cd_mensagem")
 	private Mensagem mensagem;
 
@@ -68,6 +73,14 @@ public class ConfiguracaoGeral {
 		this.verificacaoDuasEtapas = verificacaoDuasEtapas;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 	public Post getPost() {
 		return post;
 	}
@@ -82,6 +95,5 @@ public class ConfiguracaoGeral {
 
 	public void setMensagem(Mensagem mensagem) {
 		this.mensagem = mensagem;
-	}
-	 
+	} 
 }
