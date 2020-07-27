@@ -70,7 +70,18 @@ public class Usuario {
 	private ConfiguracaoGeral configGeral;
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	private List<Post> posts = new ArrayList<Post>();
+	private List<Post> posts = new ArrayList<Post>();	
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Mensagem> mensagens;
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<UsuarioNotificacao> notificacoes;
+	
+	public void addMensagem(Mensagem novaMensagem) {
+		novaMensagem.setUsuario(this);
+		this.mensagens.add(novaMensagem);
+	}
 	
 	public Usuario() {
 		super();
@@ -196,5 +207,13 @@ public class Usuario {
 	public void addPost(Post post) {
 		post.setUsuario(this);
 		posts.add(post);
+	}
+
+	public List<Mensagem> getMensagens() {
+		return mensagens;
+	}
+
+	public void setMensagens(List<Mensagem> mensagens) {
+		this.mensagens = mensagens;
 	}
 }

@@ -5,12 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="T_MAGTECH_PREFERENCIAS")
 @SequenceGenerator(name="preferencias", sequenceName="SQ_T_PREFERENCIAS", allocationSize=1)
+@IdClass(PreferenciasPK.class)
 public class Preferencias {
 	@Id
 	@Column(name="cd_preferencias", precision=1)
@@ -26,9 +30,10 @@ public class Preferencias {
 	@Column(name="st_preferencias", nullable=false, length=150)
 	private String status;
 
-	/*
-	 * Relacionamentos
-	 * */
+	@Id
+	@OneToOne
+	@JoinColumn(name="cd_configuracao")
+	private ConfiguracaoGeral configGeral;
 	
 	public Preferencias() {
 		super();

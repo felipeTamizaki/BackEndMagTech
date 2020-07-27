@@ -38,6 +38,9 @@ public class ConfiguracaoGeral {
 	@JoinColumn(name = "cd_mensagem")
 	private Mensagem mensagem;
 
+	@OneToOne
+	private Preferencias preferencias;
+
 	public ConfiguracaoGeral() {
 		super();
 		// TODO Auto-generated constructor stub
