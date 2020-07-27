@@ -1,14 +1,20 @@
 package br.com.magtech.entity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -49,6 +55,23 @@ public class Usuario {
 	@Column(name = "ds_bio", length = 100, nullable = true)
 	private String bio;
 
+	// RELACIONAMENTO
+	
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private ProfissionalSaude profSaude;
+	
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private UsuarioComum usuarioComum;  
+	
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private Login login;
+	
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private ConfiguracaoGeral configGeral;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<Post> posts = new ArrayList<Post>();
+	
 	public Usuario() {
 		super();
 	}
@@ -85,7 +108,7 @@ public class Usuario {
 		return dtNascimento;
 	}
 
-	public void setDtNacimento(Calendar dtNascimento) {
+	public void setDtNascimento(Calendar dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 
@@ -127,5 +150,51 @@ public class Usuario {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+	
+	public void setLogin(Login login) {
+		this.login = login;
+	}
+	
+	public List<Post> getPosts() {
+		return posts;
+	}
+	
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+	
+	public ProfissionalSaude getProfSaude() {
+		return profSaude;
+	}
+
+	public void setProfSaude(ProfissionalSaude profSaude) {
+		this.profSaude = profSaude;
+	}
+	
+	public UsuarioComum getUsuarioComum() {
+		return usuarioComum;
+	}
+
+	public void setUsuarioComum(UsuarioComum usuarioComum) {
+		this.usuarioComum = usuarioComum;
+	}
+
+	public ConfiguracaoGeral getConfigGeral() {
+		return configGeral;
+	}
+
+	public void setConfigGeral(ConfiguracaoGeral configGeral) {
+		this.configGeral = configGeral;
+	}
+
+	// Metodo para adicionar um post à lista do usuário
+	public void addPost(Post post) {
+		post.setUsuario(this);
+		posts.add(post);
 	}
 }

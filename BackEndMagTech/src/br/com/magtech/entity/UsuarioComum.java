@@ -2,6 +2,8 @@ package br.com.magtech.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,7 +32,9 @@ public class UsuarioComum {
 	@Column(name = "ds_remedio_controlado", length = 70)
 	private String remedioCtrl;
 	
-	// Foreign Key
+	@OneToOne
+	@JoinColumn(name = "cd_usuario")
+	private Usuario usuario;
 	
 	public UsuarioComum(String tpSangue, boolean fumante, boolean abstemia, boolean doador, String exames,
 			String historico, int categoria, String alergia, String doenca, String remedioCtrl) {
@@ -129,5 +133,13 @@ public class UsuarioComum {
 
 	public void setRemedioCtrl(String remedioCtrl) {
 		this.remedioCtrl = remedioCtrl;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

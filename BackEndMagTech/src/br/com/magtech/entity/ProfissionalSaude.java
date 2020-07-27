@@ -2,6 +2,8 @@ package br.com.magtech.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +22,10 @@ public class ProfissionalSaude {
 	@Column(name = "nr_telefone_instituicao", precision = 11, nullable = true)
 	private long telefone;
 
+	@OneToOne
+	@JoinColumn(name = "cd_usuario")
+	private Usuario usuario;
+	
 	public ProfissionalSaude(String identificação, String cargo, String nomeInstituição, long telefone) {
 		super();
 		this.identificação = identificação;
@@ -62,5 +68,13 @@ public class ProfissionalSaude {
 
 	public void setTelefone(long telefone) {
 		this.telefone = telefone;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

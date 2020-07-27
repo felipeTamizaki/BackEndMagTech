@@ -2,7 +2,10 @@ package br.com.magtech.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -10,6 +13,7 @@ import javax.persistence.Table;
 @Table(name="T_MAGTECH_CONFIGURACAO_GERAL")
 @SequenceGenerator(name="config", sequenceName="SQ_T_CONFIGURACAO_GERAL", allocationSize=1)
 public class ConfiguracaoGeral {
+	
 	@Id
 	@Column(name="cd_configuracao", precision=2)
 	private int codigo;
@@ -20,9 +24,19 @@ public class ConfiguracaoGeral {
 	@Column(name="st_verificacao_duas_etapas", precision=1)
 	private int verificacaoDuasEtapas;
 
-	/*
-	 * Relacionamentos 
-	 */
+	// Relacionamentos 
+	 
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cd_usuario")
+	private Usuario usuario;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cd_post")
+	private Post post;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cd_mensagem")
+	private Mensagem mensagem;
 
 	public ConfiguracaoGeral() {
 		super();
@@ -58,6 +72,28 @@ public class ConfiguracaoGeral {
 	public void setVerificacaoDuasEtapas(int verificacaoDuasEtapas) {
 		this.verificacaoDuasEtapas = verificacaoDuasEtapas;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
 	
-	 
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
+	public Mensagem getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(Mensagem mensagem) {
+		this.mensagem = mensagem;
+	} 
 }
