@@ -4,11 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "T_MAGTECH_PROFISSIONAL_SAUDE")
-public class ProfissionalSaude {
+@PrimaryKeyJoinColumn(name="cd_usuario")
+public class ProfissionalSaude extends Usuario{
 
 	@Column(name = "ds_identificacao_prof", length = 12, nullable = false, unique = true)
 	private String identificação;

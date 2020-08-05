@@ -9,6 +9,7 @@ public class UsuarioNotificacaoPK implements Serializable {
 	public UsuarioNotificacaoPK() {}
 
 	public UsuarioNotificacaoPK(int usuario, int notificacao) {
+		super();
 		this.usuario = usuario;
 		this.notificacao = notificacao;
 	}

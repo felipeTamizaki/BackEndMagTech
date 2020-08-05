@@ -35,7 +35,7 @@ public class Comentario {
 
 	@ManyToOne
 	@JoinColumn(name="cd_post")
-	public Post post;
+	private Post post;
 	
 	public Comentario() {
 		super();

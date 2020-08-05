@@ -4,11 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "T_MAGTECH_USUARIO_COMUM")
-public class UsuarioComum {
+@PrimaryKeyJoinColumn(name="cd_usuario")
+public class UsuarioComum extends Usuario{
 	
 	@Column(name = "ds_tipo_sanguineo", nullable = false, length = 3)
 	private String tpSangue;

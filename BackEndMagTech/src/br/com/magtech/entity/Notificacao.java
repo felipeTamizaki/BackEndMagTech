@@ -26,7 +26,7 @@ public class Notificacao {
 	@Column(name="fl_icone", nullable=false, length=200)
 	private String icone;
 
-	@OneToMany(mappedBy = "notificacao")
+	@OneToMany/*(mappedBy = "notificacao")*/
 	private List<UsuarioNotificacao> notificacoes;
 	
 	public Notificacao() {

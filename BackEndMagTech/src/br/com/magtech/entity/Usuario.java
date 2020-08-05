@@ -75,7 +75,7 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario")
 	private List<Mensagem> mensagens;
 	
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany/*(mappedBy = "usuario")*/
 	private List<UsuarioNotificacao> notificacoes;
 	
 	public void addMensagem(Mensagem novaMensagem) {

@@ -55,8 +55,9 @@ public class Post {
 	
 	@OneToOne(mappedBy = "post")
 	private ConfiguracaoGeral configGeral;
+	
 	@OneToMany(mappedBy="post")
-	public List<Comentario> comentarios;
+	private List<Comentario> comentarios;
 	
 	public void addComentario(Comentario novoComentario) {
 		novoComentario.setPost(this);
