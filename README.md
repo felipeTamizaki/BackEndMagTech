@@ -1,2 +1,2 @@
 # BackEndMagTech
-Projeto Acadêmico 
+Projeto Acadêmico com repositório movido para https://github.com/ArthurPMachado/BackEndMagTech
